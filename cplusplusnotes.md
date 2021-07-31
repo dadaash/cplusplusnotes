@@ -54,11 +54,19 @@ You can call the function with only one argument is given and the second argumen
 using = or curly brace delimeted intializer lists {} 
     
     double d = 2.3 or double d {2.3}  
-**auto** can deduce type from intializer, avoiding long type name. 
+**auto** can deduce type from intializer, avoiding long type name and increases readability  
     
     auto d = 2.3    // d is double
     auto f {true}   // f is bool
-
+    
+    Type<OtherType>::AnotherType * obj1 = new Type<OtherType>::AnotherType();   // long type name looks cumbersome.
+    auto obj1 = new Type<OtherType>::AnotherType();                             // avoiding long type name and increases readability.
+    
+but sometimes may reduce readability
+    
+    auto ret = process(data); // context does not make it clear what type it is.
+    
+ 
 ### 1.4 Constants 
 **const** immutability or cannot be modified and value can be calculated at runtime.
 **constexpr** to specify constants or read only and value must be calculated at compile time
@@ -77,11 +85,40 @@ inside a struct it has to be static (or else a compile error) because it is true
 
 **constexpr** functions cannot have side effects and information passed to it must be read-only. 
 
+### 1.5 Preprocessor
+**#include<somefile>** directive adds the functions and objects from the included **somefile**
+    
+    #include <iostream>     // adds the functions and objects that let you use the standard input and output libraries
+**#define something something_else** directive tells the proprocessor to replace all occurrence of **something** with **something_else**
+
+    #define SUM(a, b) a + b
+    
+    int main()
+    {
+        cout << SUM(5, 7) << endl;  // preprocessor will replace SUM(5, 7) with 5 + 7
+    }
+**#if, #else, #elif, #ifdef and ifndef** directives controls conditional compilation. The #endif ends the scopre of the aforementioned preprocessor directiives.
+    
+    #if true 
+    // execute code
+    #elif true
+    // execute more code
+    #else
+    //execute more code 
+    #endif // end scope
+    
+    #ifdef verify_if_macro_is_defined
+    // execute more code
+    #endif  // end scope
+    
+    
 ## Chapter 2: User-Defined Types
 **structure**  
 **class**  
 **union**  
 **enumeration**  
+
+## Chapter 3: Modularity
 
 
 
